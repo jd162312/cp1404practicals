@@ -10,6 +10,8 @@ def main():
     """Get the users score and display its status."""
     score = float(input("Enter score: "))
     print(f"User score {score} is {determine_score_status(score)}")
+    if determine_score_status(score) == "Excellent":
+        print("You get a prize!")
     random_score = randint(0, 100)
     print(f"Random: {random_score} = {determine_score_status(random_score)}")
 
