@@ -12,14 +12,14 @@ in_file.close()
 
 # 3
 with open("numbers.txt", "r") as in_file:
-    number1 = int(in_file.readline().strip())
-    number2 = int(in_file.readline().strip())
+    number1 = int(in_file.readline())
+    number2 = int(in_file.readline())
     print(number1 + number2)
 
 # 4
 with open("numbers.txt", "r") as in_file:
     total = 0
     for lines in in_file:
-        number = int(lines.strip())
+        number = int(lines)
         total += number
     print(total)
