@@ -5,9 +5,12 @@ def main():
     """Get filename and print number of lines."""
     filename = input("Enter filename: ")
     while filename != "":
-        with open(filename, "r") as in_file:
-            total = determine_number_lines(in_file)
-        print(f"{filename} has {total} lines")
+        try:
+            with open(filename, "r") as in_file:
+                total = determine_number_lines(in_file)
+            print(f"{filename} has {total} lines.")
+        except FileNotFoundError:
+            print(f"ERROR: {filename} does not exist.")
         filename = input("Enter filename: ")
 
 
