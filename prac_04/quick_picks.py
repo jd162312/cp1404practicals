@@ -13,4 +13,4 @@ for i in range(number_of_quick_picks):
             number = randint(MINIMUM, MAXIMUM)
         quick_pick.append(number)
     quick_pick.sort()
-    print(*quick_pick)
+    print(" ".join(f"{number:2}" for number in quick_pick))
