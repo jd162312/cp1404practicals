@@ -11,8 +11,8 @@ class Project:
 
     def __str__(self):
         """Return project object as string."""
-        return (f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: {self.cost_estimate}, "
-                f"completion: {self.completion_percentage}%")
+        return (f"{self.name}, start: {self.start_date.strftime("%d/%m/%Y")}, priority {self.priority}, estimate: "
+                f"${self.cost_estimate}, completion: {self.completion_percentage}%")
 
     def __lt__(self, other):
         """Compare objects by there priority."""
