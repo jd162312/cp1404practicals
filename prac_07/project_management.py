@@ -25,6 +25,8 @@ def main():
             save_projects(filename, projects)
         elif choice == "D":
             display_projects(projects)
+        elif choice == "F":
+            filter_projects_by_date(projects)
         print(MENU)
         choice = input(">>> ").upper()
 
@@ -63,6 +65,14 @@ def display_projects(projects):
         print(project)
     print("Completed projects:")
     for project in complete_projects:
+        print(project)
+
+
+def filter_projects_by_date(projects):
+    date = input("Show projects that are after start date (dd/mm/yy): ")
+    filtered_projects = [project for project in projects if project.start_date >
+                         datetime.datetime.strptime(date, "%d/%m/%Y").date()]
+    for project in filtered_projects:
         print(project)
 
 
