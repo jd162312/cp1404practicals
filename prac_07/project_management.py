@@ -1,3 +1,7 @@
+"""
+Project management program
+Estimated time: 3 hours
+"""
 import datetime
 
 from project import Project
@@ -12,6 +16,7 @@ MENU = """- (L)oad projects
 
 
 def main():
+    """Load file and run the menu."""
     filename = "projects.txt"
     print("Welcome to Pythonic Project Management")
     projects = load_projects(filename)
@@ -35,6 +40,10 @@ def main():
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
+    save_status = input(f"Would you like to save to {filename}? ").upper()
+    if save_status == "YES" or save_status == "Y":
+        save_projects(filename, projects)
+    print("Thank you for using custom-built project management software.")
 
 
 def load_projects(filename):
@@ -62,6 +71,7 @@ def save_projects(filename, projects):
 
 
 def display_projects(projects):
+    """Display the projects sorted into complete and incomplete categories."""
     complete_projects = [project for project in projects if project.is_complete()]
     complete_projects.sort()
     incomplete_projects = [project for project in projects if not project.is_complete()]
@@ -75,6 +85,7 @@ def display_projects(projects):
 
 
 def filter_projects_by_date(projects):
+    """Filter the projects by the date entered by the user."""
     date = input("Show projects that are after start date (dd/mm/yy): ")
     filtered_projects = [project for project in projects if project.start_date >
                          datetime.datetime.strptime(date, "%d/%m/%Y").date()]
@@ -83,6 +94,7 @@ def filter_projects_by_date(projects):
 
 
 def add_project(projects):
+    """Add a new project."""
     print("Lets add a new project")
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yy): ")
@@ -95,6 +107,7 @@ def add_project(projects):
 
 
 def update_project(projects):
+    """Update the percentage and priority of a project."""
     for i, project in enumerate(projects, 0):
         print(f"{i} {project}")
     project_choice = int(input("Project choice: "))
