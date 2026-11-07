@@ -2,11 +2,28 @@ import datetime
 
 from project import Project
 
+MENU = """- (L)oad projects  
+- (S)ave projects  
+- (D)isplay projects  
+- (F)ilter projects by date
+- (A)dd new project  
+- (U)pdate project
+- (Q)uit"""
+
 
 def main():
-    projects = load_projects("projects.txt")
-    # for line in projects:
-    #     print(line)
+    filename = "projects.txt"
+    print("Welcome to Pythonic Project Management")
+    projects = load_projects(filename)
+    print(MENU)
+    choice = input(">>> ").upper()
+    while choice != "Q":
+        if choice == "L":
+            filename = input("Enter filename: ")
+            projects = load_projects(filename)
+        elif choice == "S":
+            save_projects(filename, projects)
+        choice = input(">>> ").upper()
 
 
 def load_projects(filename):
@@ -19,7 +36,18 @@ def load_projects(filename):
             project = Project(parts[0], datetime.datetime.strptime(parts[1], "%d/%m/%Y").date(), int(parts[2]),
                               float(parts[3]), int(parts[4]))
             projects.append(project)
+    print(f"Loaded {len(projects)} projects from {filename}")
     return projects
+
+
+def save_projects(filename, projects):
+    """Save projects to file."""
+    with open(filename, "w") as out_file:
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=out_file)
+        for project in projects:
+            print(f"{project.name}\t{project.start_date.strftime("%d/%m/%Y")}\t{project.priority}\t"
+                  f"{project.cost_estimate}\t{project.completion_percentage}", file=out_file)
+    print(f"Saved {len(projects)} projects to {filename}")
 
 
 main()
