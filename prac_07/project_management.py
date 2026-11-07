@@ -27,6 +27,8 @@ def main():
             display_projects(projects)
         elif choice == "F":
             filter_projects_by_date(projects)
+        elif choice == "A":
+            add_project(projects)
         print(MENU)
         choice = input(">>> ").upper()
 
@@ -74,6 +76,18 @@ def filter_projects_by_date(projects):
                          datetime.datetime.strptime(date, "%d/%m/%Y").date()]
     for project in filtered_projects:
         print(project)
+
+
+def add_project(projects):
+    print("Lets add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: $"))
+    percent_complete = int(input("Percent complete: "))
+    project = Project(name, datetime.datetime.strptime(start_date, "%d/%m/%Y").date(), priority, cost_estimate,
+                      percent_complete)
+    projects.append(project)
 
 
 main()
