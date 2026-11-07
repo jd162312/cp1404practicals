@@ -29,6 +29,10 @@ def main():
             filter_projects_by_date(projects)
         elif choice == "A":
             add_project(projects)
+        elif choice == "U":
+            update_project(projects)
+        else:
+            print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
 
@@ -88,6 +92,20 @@ def add_project(projects):
     project = Project(name, datetime.datetime.strptime(start_date, "%d/%m/%Y").date(), priority, cost_estimate,
                       percent_complete)
     projects.append(project)
+
+
+def update_project(projects):
+    for i, project in enumerate(projects, 0):
+        print(f"{i} {project}")
+    project_choice = int(input("Project choice: "))
+    project = projects[project_choice]
+    print(project)
+    new_percentage = input("New percentage: ")
+    new_priority = input("New priority: ")
+    if new_percentage:
+        project.completion_percentage = int(new_percentage)
+    if new_priority:
+        project.priority = int(new_priority)
 
 
 main()
