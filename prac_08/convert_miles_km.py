@@ -17,12 +17,19 @@ class MilesConverterApp(App):
 
     def handle_calculate(self, miles):
         """Handle calculation from miles to kilometers when button is pressed."""
-        self.output_km = str(float(miles) * MILES_TO_KM)
+        self.output_km = str(self.convert_to_float(miles) * MILES_TO_KM)
 
     def handle_increment(self, miles, change):
         """Handle increment when the up or down button is pressed, updating the input with new value."""
-        miles = float(miles) + change
+        miles = self.convert_to_float(miles) + change
         self.root.ids.input_miles.text = str(miles)
+
+    def convert_to_float(self, text):
+        """Convert the text to a float if valid number, otherwise set it to 0.0."""
+        try:
+            return float(text)
+        except ValueError:
+            return 0.0
 
 
 MilesConverterApp().run()
