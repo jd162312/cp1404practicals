@@ -1,0 +1,23 @@
+class Project:
+    """Represent project object."""
+
+    def __init__(self, name, start_date, priority, cost_estimate, completion_percentage):
+        """Initialise project instance."""
+        self.name = name
+        self.start_date = start_date
+        self.priority = priority
+        self.cost_estimate = cost_estimate
+        self.completion_percentage = completion_percentage
+
+    def __str__(self):
+        """Return project object as string."""
+        return (f"{self.name}, start: {self.start_date.strftime("%d/%m/%Y")}, priority {self.priority}, estimate: "
+                f"${self.cost_estimate}, completion: {self.completion_percentage}%")
+
+    def __lt__(self, other):
+        """Compare objects by there priority."""
+        return self.priority < other.priority
+
+    def is_complete(self):
+        """Determine if project is complete"""
+        return self.completion_percentage == 100
